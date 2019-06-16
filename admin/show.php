@@ -195,8 +195,8 @@ tr:hover .cut { opacity: 1; }
 			<h1>Information of Guest</h1>
 			<address >
 				<p>SUN RISE HOTEL,</p>
-				<p>New Kalmunani Road,<br>Battialoa,<br>Sri Lanka.</p>
-				<p>(+94) 65 222 44 55</p>
+				<p>Indra Chauk,<br>Rudrapur,<br>Uttarakhand, India.</p>
+				<p>(+91) 65 222 44 55</p>
 			</address>
 			<span><img alt="" src="assets/img/sun.png"></span>
 		</header>
@@ -268,7 +268,7 @@ tr:hover .cut { opacity: 1; }
 		<aside>
 			<h1><span >Contact us</span></h1>
 			<div >
-				<p align="center">Email :- info@sunrise.com || Web :- www.sunrise.com || Phone :- +94 65 222 44 55 </p>
+				<p align="center">Email :- info@sunrise.com || Web :- www.sunrise.com || Phone :- +91 65 222 44 55 </p>
 			</div>
 		</aside>
 	</body>

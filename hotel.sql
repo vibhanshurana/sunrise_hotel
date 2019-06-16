@@ -1,20 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
--- http://www.phpmyadmin.net
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 14, 2017 at 06:52 PM
--- Server version: 5.6.20
--- PHP Version: 5.5.15
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jun 16, 2019 at 11:04 AM
+-- Server version: 5.7.24
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `hotel`
@@ -26,14 +28,16 @@ SET time_zone = "+00:00";
 -- Table structure for table `contact`
 --
 
+DROP TABLE IF EXISTS `contact`;
 CREATE TABLE IF NOT EXISTS `contact` (
-`id` int(10) unsigned NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `fullname` varchar(100) DEFAULT NULL,
   `phoneno` int(10) DEFAULT NULL,
   `email` text,
   `cdate` date DEFAULT NULL,
-  `approval` varchar(12) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `approval` varchar(12) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -41,11 +45,13 @@ CREATE TABLE IF NOT EXISTS `contact` (
 -- Table structure for table `login`
 --
 
+DROP TABLE IF EXISTS `login`;
 CREATE TABLE IF NOT EXISTS `login` (
-`id` int(10) unsigned NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `usname` varchar(30) DEFAULT NULL,
-  `pass` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `pass` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `login`
@@ -53,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `login` (
 
 INSERT INTO `login` (`id`, `usname`, `pass`) VALUES
 (1, 'Admin', '1234'),
-(2, 'Prasath', '12345');
+(2, 'Abhishek', '12345');
 
 -- --------------------------------------------------------
 
@@ -61,12 +67,14 @@ INSERT INTO `login` (`id`, `usname`, `pass`) VALUES
 -- Table structure for table `newsletterlog`
 --
 
+DROP TABLE IF EXISTS `newsletterlog`;
 CREATE TABLE IF NOT EXISTS `newsletterlog` (
-`id` int(10) unsigned NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` varchar(52) DEFAULT NULL,
   `subject` varchar(100) DEFAULT NULL,
-  `news` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `news` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -74,6 +82,7 @@ CREATE TABLE IF NOT EXISTS `newsletterlog` (
 -- Table structure for table `payment`
 --
 
+DROP TABLE IF EXISTS `payment`;
 CREATE TABLE IF NOT EXISTS `payment` (
   `id` int(11) DEFAULT NULL,
   `title` varchar(5) DEFAULT NULL,
@@ -92,26 +101,35 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `noofdays` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`id`, `title`, `fname`, `lname`, `troom`, `tbed`, `nroom`, `cin`, `cout`, `ttot`, `fintot`, `mepr`, `meal`, `btot`, `noofdays`) VALUES
+(2, 'Mr.', 'Deepak', 'Sharma', 'Superior Room', 'Single', 1, '2019-06-16', '2019-06-17', 320.00, 323.20, 0.00, 'Room only', 3.20, 1);
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `room`
 --
 
+DROP TABLE IF EXISTS `room`;
 CREATE TABLE IF NOT EXISTS `room` (
-`id` int(10) unsigned NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `type` varchar(15) DEFAULT NULL,
   `bedding` varchar(10) DEFAULT NULL,
   `place` varchar(10) DEFAULT NULL,
-  `cusid` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+  `cusid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `room`
 --
 
 INSERT INTO `room` (`id`, `type`, `bedding`, `place`, `cusid`) VALUES
-(1, 'Superior Room', 'Single', 'Free', NULL),
+(1, 'Superior Room', 'Single', 'NotFree', 2),
 (2, 'Superior Room', 'Double', 'Free', NULL),
 (3, 'Superior Room', 'Triple', 'Free', NULL),
 (4, 'Single Room', 'Quad', 'Free', NULL),
@@ -133,8 +151,9 @@ INSERT INTO `room` (`id`, `type`, `bedding`, `place`, `cusid`) VALUES
 -- Table structure for table `roombook`
 --
 
+DROP TABLE IF EXISTS `roombook`;
 CREATE TABLE IF NOT EXISTS `roombook` (
-`id` int(10) unsigned NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Title` varchar(5) DEFAULT NULL,
   `FName` text,
   `LName` text,
@@ -149,72 +168,19 @@ CREATE TABLE IF NOT EXISTS `roombook` (
   `cin` date DEFAULT NULL,
   `cout` date DEFAULT NULL,
   `stat` varchar(15) DEFAULT NULL,
-  `nodays` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `nodays` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `roombook`
 --
 
---
--- Indexes for table `contact`
---
-ALTER TABLE `contact`
- ADD PRIMARY KEY (`id`);
+INSERT INTO `roombook` (`id`, `Title`, `FName`, `LName`, `Email`, `National`, `Country`, `Phone`, `TRoom`, `Bed`, `NRoom`, `Meal`, `cin`, `cout`, `stat`, `nodays`) VALUES
+(2, 'Mr.', 'Deepak', 'Sharma', 'd@gmail.com', 'Sri Lankan', 'India', '9876543210', 'Superior Room', 'Single', '1', 'Room only', '2019-06-16', '2019-06-17', 'Conform', 1),
+(3, 'Rev .', 'Kamal', 'Gupta', 'kamal@gmail.com', 'Indian', 'India', '8765432190', 'Superior Room', 'Triple', '1', 'Room only', '2019-06-16', '2019-06-18', 'Not Conform', 2);
+COMMIT;
 
---
--- Indexes for table `login`
---
-ALTER TABLE `login`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `newsletterlog`
---
-ALTER TABLE `newsletterlog`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `room`
---
-ALTER TABLE `room`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `roombook`
---
-ALTER TABLE `roombook`
- ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `contact`
---
-ALTER TABLE `contact`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `login`
---
-ALTER TABLE `login`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `newsletterlog`
---
-ALTER TABLE `newsletterlog`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `room`
---
-ALTER TABLE `room`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
---
--- AUTO_INCREMENT for table `roombook`
---
-ALTER TABLE `roombook`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
